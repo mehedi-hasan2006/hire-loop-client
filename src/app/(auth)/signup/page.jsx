@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 const UserIcon = () => (
@@ -151,6 +152,8 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log({ email, password, fullName });
+
     const { data, error } = await authClient.signUp.email(
       {
         email,
@@ -164,12 +167,12 @@ const Signup = () => {
         },
         onSuccess: (res) => {
           setIsLoading(false);
-          toast.success("Acoount has been created.");
+          toast.success("Account has been created.");
           router.push("/dashboard");
         },
         onError: (res) => {
           setIsLoading(false);
-          toast.error(
+          toast.danger(
             res.error.message ||
               res.error.statusText ||
               "Registration Failed. Please try again.",

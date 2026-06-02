@@ -14,7 +14,13 @@ export default function Footer() {
           <div className="space-y-6">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
-              <Image src={logo} alt="Hire Loop" width={100} height={100} />
+              <Image
+                src={logo}
+                alt="Hire Loop"
+                width={100}
+                height={100}
+                className="w-auto h-auto"
+              />
             </Link>
 
             {/* Description */}

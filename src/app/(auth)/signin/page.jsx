@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { toast } from "@heroui/react";
 import React, { useState } from "react";
 
 const UserIcon = () => (
@@ -104,10 +105,11 @@ export default function Login() {
         },
         onError: (res) => {
           // display the error message
-          toast.error(res.error.message || "Login Failed. Please try again.");
+          toast.danger(res.error.message || "Login Failed. Please try again.");
         },
       },
     );
+    console.log({ data, error });
   };
 
   return (
