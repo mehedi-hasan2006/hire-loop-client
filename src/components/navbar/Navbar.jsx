@@ -65,14 +65,16 @@ export default function Navbar() {
             </svg>
           </button>
           <div className="flex items-center gap-3">
-            <Image
-              src={logo}
-              alt="Hire Loop Logo"
-              width={100}
-              height={100}
-              loading="eager"
-              className="h-auto w-auto"
-            ></Image>
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="Hire Loop Logo"
+                width={100}
+                height={100}
+                loading="eager"
+                className="h-auto w-auto"
+              ></Image>
+            </Link>
           </div>
         </div>
         <ul className="hidden items-center gap-4 md:flex">
@@ -126,20 +128,19 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
-            <li>
-              <Link href="#" className="block py-2">
-                Features
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2 font-medium text-accent">
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2">
-                Pricing
-              </Link>
+            <li className="flex flex-col gap-5">
+              {navLinks.map((link) => {
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="font-semibold hover:text-[#5C53FE] transition-colors duration-200"
+                  >
+                    {" "}
+                    {link.name}{" "}
+                  </Link>
+                );
+              })}
             </li>
             {!user && (
               <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">

@@ -250,7 +250,7 @@ const Signup = () => {
                   type="button"
                   onClick={handleNext}
                   disabled={!fullName}
-                  className="signin-button w-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="signin-button w-full bg-gray-900 cursor-pointer dark:bg-gray-100 text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   Next Step
                   <ArrowRightIcon />
@@ -316,7 +316,7 @@ const Signup = () => {
                   type="button"
                   onClick={handleNext}
                   disabled={!email || !password}
-                  className="signin-button w-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="signin-button w-full bg-gray-900 cursor-pointer dark:bg-gray-100 text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   Next Step
                   <ArrowRightIcon />
@@ -367,11 +367,11 @@ const Signup = () => {
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center gap-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white dark:border-gray-900 border-t-transparent"></div>
+                      <div className="animate-spin   rounded-full h-4 w-4 border-2 border-white dark:border-gray-900 border-t-transparent"></div>
                       Creating account...
                     </div>
                   ) : (
-                    "Create account"
+                    <div className="cursor-pointer"> Create account</div>
                   )}
                 </button>
               </div>
@@ -382,7 +382,7 @@ const Signup = () => {
           {step > 1 && (
             <button
               onClick={() => setStep(step - 1)}
-              className="mt-4 w-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors text-sm font-medium flex items-center justify-center gap-2"
+              className="mt-4 w-full cursor-pointer text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors text-sm font-medium flex items-center justify-center gap-2"
             >
               <ArrowLeftIcon />
               Back to previous step

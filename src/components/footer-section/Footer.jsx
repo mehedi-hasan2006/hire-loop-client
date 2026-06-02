@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto container px-6 py-16 lg:px-8">
         {/* TOP SECTION */}
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* LEFT */}
@@ -17,8 +17,8 @@ export default function Footer() {
               <Image
                 src={logo}
                 alt="Hire Loop"
-                width={100}
-                height={100}
+                width={300}
+                height={300}
                 className="w-auto h-auto"
               />
             </Link>
@@ -62,25 +62,25 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li>
-                <Link href="/jobs" className="transition hover:text-white">
+                <Link href="#" className="transition hover:text-white">
                   Job discovery
                 </Link>
               </li>
 
               <li>
-                <Link href="/worker-ai" className="transition hover:text-white">
+                <Link href="#" className="transition hover:text-white">
                   Worker AI
                 </Link>
               </li>
 
               <li>
-                <Link href="/companies" className="transition hover:text-white">
+                <Link href="#" className="transition hover:text-white">
                   Companies
                 </Link>
               </li>
 
               <li>
-                <Link href="/salary" className="transition hover:text-white">
+                <Link href="#" className="transition hover:text-white">
                   Salary data
                 </Link>
               </li>
@@ -95,19 +95,13 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li>
-                <Link
-                  href="/help-center"
-                  className="transition hover:text-white"
-                >
+                <Link href="#" className="transition hover:text-white">
                   Help center
                 </Link>
               </li>
 
               <li>
-                <Link
-                  href="/career-library"
-                  className="transition hover:text-white"
-                >
+                <Link href="#" className="transition hover:text-white">
                   Career library
                 </Link>
               </li>
@@ -128,16 +122,13 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li>
-                <Link
-                  href="/brand-guideline"
-                  className="transition hover:text-white"
-                >
+                <Link href="#" className="transition hover:text-white">
                   Brand Guideline
                 </Link>
               </li>
 
               <li>
-                <Link href="/newsroom" className="transition hover:text-white">
+                <Link href="#" className="transition hover:text-white">
                   Newsroom
                 </Link>
               </li>
@@ -147,14 +138,18 @@ export default function Footer() {
 
         {/* BOTTOM */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-gray-500 md:flex-row">
-          <p>Copyright 2024 — Hire Loop</p>
+          <p>
+            {" "}
+            &copy; 2025-{new Date().getFullYear()} — Hire Loop. All rights
+            reserved.
+          </p>
 
           <div className="flex items-center gap-6">
-            <Link href="/terms" className="transition hover:text-white">
+            <Link href="#" className="transition hover:text-white">
               Terms & Policy
             </Link>
 
-            <Link href="/privacy" className="transition hover:text-white">
+            <Link href="#" className="transition hover:text-white">
               Privacy Guideline
             </Link>
           </div>
