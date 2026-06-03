@@ -137,13 +137,14 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [role, setRole] = useState("seeker");
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(1);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const handleNext = () => {
-    if (step < 3) {
+    if (step < 4) {
       setStep(step + 1);
     }
   };
@@ -152,13 +153,12 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log({ email, password, fullName });
-
     const { data, error } = await authClient.signUp.email(
       {
         email,
         password,
         name: fullName,
+        role,
       },
       {
         onRequest: (res) => {
@@ -189,17 +189,17 @@ const Signup = () => {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-3">
             <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Step {step} of 3
+              Step {step} of 4
             </span>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {Math.round((step / 3) * 100)}%
+              {Math.round((step / 4) * 100)}%
             </span>
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
             <div
               className="signin-progress bg-gray-900 dark:bg-gray-100 h-2 rounded-full transition-all duration-500 ease-out"
               style={{
-                width: `${(step / 3) * 100}%`,
+                width: `${(step / 4) * 100}%`,
               }}
             />
           </div>
@@ -217,6 +217,7 @@ const Signup = () => {
               {step === 1 && "Let's start with your basic information"}
               {step === 2 && "Now, set up your credentials"}
               {step === 3 && "Almost done! Review your details"}
+              {step === 4 && "Final step: Confirm your account"}
             </p>
           </div>
 
@@ -258,8 +259,73 @@ const Signup = () => {
               </div>
             )}
 
-            {}
             {step === 2 && (
+              <div className="flex flex-col justify-center items-center gap-6 w-full">
+                <div className="flex justify-center items-center gap-4 w-full">
+                  {/* Seeker */}
+                  <label
+                    className={`flex items-center gap-3 px-6 py-4 rounded-xl border-2 cursor-pointer transition-all duration-200 flex-1 max-w-xs ${
+                      role === "seeker"
+                        ? "border-blue-500 bg-blue-50 text-blue-600 shadow-md"
+                        : "border-gray-200 bg-white text-gray-600 hover:border-blue-300 hover:bg-gray-50"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="role"
+                      value="seeker"
+                      checked={role === "seeker"}
+                      onChange={(e) => setRole(e.target.value)}
+                      className="hidden"
+                    />
+                    <span className="text-2xl">🔍</span>
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-sm">Job Seeker</span>
+                      <span className="text-xs opacity-75">
+                        Find your next opportunity
+                      </span>
+                    </div>
+                  </label>
+
+                  {/* Recruiter */}
+                  <label
+                    className={`flex items-center gap-3 px-6 py-4 rounded-xl border-2 cursor-pointer transition-all duration-200 flex-1 max-w-xs ${
+                      role === "recruiter"
+                        ? "border-green-500 bg-green-50 text-green-600 shadow-md"
+                        : "border-gray-200 bg-white text-gray-600 hover:border-green-300 hover:bg-gray-50"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="role"
+                      value="recruiter"
+                      checked={role === "recruiter"}
+                      onChange={(e) => setRole(e.target.value)}
+                      className="hidden"
+                    />
+                    <span className="text-2xl">👔</span>
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-sm">Recruiter</span>
+                      <span className="text-xs opacity-75">
+                        Post jobs & find talent
+                      </span>
+                    </div>
+                  </label>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  disabled={!fullName || !role}
+                  className="w-full max-w-md bg-gray-900 cursor-pointer dark:bg-gray-100 text-white dark:text-gray-900 py-3 px-6 rounded-lg text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  Continue
+                  <ArrowRightIcon className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+
+            {step === 3 && (
               <div className="signin-step space-y-4">
                 <div className="space-y-2">
                   <label
@@ -325,7 +391,7 @@ const Signup = () => {
             )}
 
             {}
-            {step === 3 && (
+            {step === 4 && (
               <div className="signin-step space-y-4">
                 <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4 rounded-md">
                   <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 flex items-center gap-2">
@@ -347,6 +413,14 @@ const Signup = () => {
                       </span>
                       <span className="text-gray-900 dark:text-gray-100 font-medium">
                         {email}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        Role:
+                      </span>
+                      <span className="text-gray-900 dark:text-gray-100 font-medium">
+                        {role}
                       </span>
                     </div>
                     <div className="flex justify-between items-center py-1">
