@@ -5,7 +5,7 @@ function RecruiterDashboarLayout({ children }) {
     <div>
       <div className="flex min-h-screen">
         <DashboardLayoutSidebar />
-        {children}
+        <div className="flex-1 "> {children}</div>
       </div>
     </div>
   );
