@@ -13,8 +13,11 @@ import {
   ListBox,
   Switch,
   Button,
+  toast,
 } from "@heroui/react";
 import { Briefcase, Globe } from "@gravity-ui/icons";
+import { useSession } from "@/lib/auth-client";
+import { createJob } from "@/lib/actions/jobs";
 
 export default function PostJobPage() {
   const [mockCompany] = useState({
@@ -26,6 +29,10 @@ export default function PostJobPage() {
   const [isRemote, setIsRemote] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // get logged in user session data
+  const { data: session, isPending } = useSession();
+  const user = session?.user;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,17 +69,25 @@ export default function PostJobPage() {
 
     const payload = {
       ...data,
+      user: user?.name,
+      userId: user?.id,
+      userEmail: user?.email,
       isRemote,
       companyId: mockCompany.id,
       status: "active",
       isPubliclyVisible: true,
     };
 
-    console.log(payload);
     // Simulate API call
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsSubmitting(false);
-      console.log("Payload:", payload);
+      const res = await createJob(payload);
+
+      if (res.success) {
+        toast.success("New Job Created Successfully");
+      } else {
+        toast.danger(res.message);
+      }
     }, 1500);
   };
 
