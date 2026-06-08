@@ -31,3 +31,13 @@ export const createJob = async (newJobData) => {
     };
   }
 };
+
+export const fetchJobs = async () => {
+  const res = await fetch(`${baseURL}/api/jobs`);
+  return res.json();
+};
+
+export const fetchJobDetails = async (id) => {
+  const res = await fetch(`${baseURL}/api/jobs/${id}`);
+  return res.json();
+};

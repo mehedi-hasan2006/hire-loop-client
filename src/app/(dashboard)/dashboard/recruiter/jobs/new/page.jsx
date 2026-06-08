@@ -74,6 +74,7 @@ export default function PostJobPage() {
       userEmail: user?.email,
       isRemote,
       companyId: mockCompany.id,
+      companyName: mockCompany.name,
       status: "active",
       isPubliclyVisible: true,
     };
@@ -162,7 +163,7 @@ export default function PostJobPage() {
   ].join(" ");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-zinc-950 text-white py-8 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Main Card */}
         <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-2xl shadow-black/20">

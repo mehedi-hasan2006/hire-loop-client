@@ -38,7 +38,7 @@ const RecruiterDashboardPage = () => {
   ];
 
   return (
-    <div>
+    <div className="space-y-5">
       <h1 className="text-2xl font-semibold mt-3">
         Welcome to the Recruiter Dashboard, {user?.name}!
       </h1>
@@ -53,7 +53,7 @@ const RecruiterDashboardPage = () => {
         ))}
       </div>
 
-      {/* <RecentApplicationsTable /> */}
+      <RecentApplicationsTable />
     </div>
   );
 };
